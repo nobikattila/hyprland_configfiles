@@ -35,8 +35,8 @@ def on_metadata(player, metadata, manager):
             'mpris:trackid' in metadata.keys() and \
             ':ad:' in player.props.metadata['mpris:trackid']:
         track_info = 'AD PLAYING'
-    elif player.get_artist() != '' and player.get_title() != '':
-        track_info = '{artist} - {title}'.format(artist=player.get_artist(),
+    elif player.get_artist() != '' and player.get_title() != '' and player.get_album() != '':
+        track_info = '{artist} - {title} - {album}'.format(artist=player.get_artist(),album=player.get_album(),
                                                  title=player.get_title())
     else:
         track_info = player.get_title()
@@ -122,7 +122,6 @@ def main():
         init_player(manager, player)
 
     loop.run()
-
 
 if __name__ == '__main__':
     main()
